@@ -1,0 +1,19 @@
+name: Rename to index
+on:
+  workflow_dispatch:
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rename file
+        run: |
+          if [ -f room-glow-up-3.html ]; then
+            git mv room-glow-up-3.html index.html
+            git config user.name "clutchlab-coach"
+            git config user.email "clutchlab-coach@users.noreply.github.com"
+            git commit -m "Rename room-glow-up-3.html to index.html"
+            git push
+          fi
